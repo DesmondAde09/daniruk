@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Svg, { Circle, Defs, RadialGradient, Stop } from 'react-native-svg';
 
 import { Button, Icon, Logo, Pill } from '@/components';
 import { componentColors } from '@/components/palette';
@@ -39,8 +40,16 @@ function FloatingChip({
 function HeroCard() {
   return (
     <View style={styles.hero}>
-      <View style={styles.glowOuter} />
-      <View style={styles.glowInner} />
+      <Svg width={340} height={340} style={styles.glow} viewBox="0 0 340 340">
+        <Defs>
+          <RadialGradient id="heroGlow" cx="50%" cy="50%" r="50%">
+            <Stop offset="0%" stopColor="#0B140F" stopOpacity={0.55} />
+            <Stop offset="70%" stopColor="#0B140F" stopOpacity={0.28} />
+            <Stop offset="100%" stopColor="#0B140F" stopOpacity={0} />
+          </RadialGradient>
+        </Defs>
+        <Circle cx={170} cy={170} r={170} fill="url(#heroGlow)" />
+      </Svg>
       <View style={styles.heroCard}>
         <View style={styles.heroBadge}>
           <Text style={styles.heroBadgeLetter}>D</Text>
@@ -138,19 +147,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  glowOuter: {
+  glow: {
     position: 'absolute',
-    width: 330,
-    height: 330,
-    borderRadius: 165,
-    backgroundColor: 'rgba(255, 255, 255, 0.04)',
-  },
-  glowInner: {
-    position: 'absolute',
-    width: 280,
-    height: 280,
-    borderRadius: 140,
-    backgroundColor: 'rgba(21, 34, 29, 0.5)',
   },
   heroCard: {
     width: HERO_CARD_WIDTH,
