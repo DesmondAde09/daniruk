@@ -7,7 +7,7 @@ import { Button, Icon } from '@/components';
 import { formatSignedKobo } from '@/lib/currency';
 import { colors, screenPadding, spacing, typography } from '@/theme/tokens';
 
-interface SuccessParams {
+type SuccessParams = {
   transactionId: string;
   amountKobo: string;
   brandName?: string;

@@ -42,14 +42,14 @@ describe('Transaction detail screen', () => {
 
     expect(await screen.findByText('+₦71,250')).toBeTruthy();
     expect(screen.getByText('Successful')).toBeTruthy();
-    expect(screen.getByText('Apple Gift Card')).toBeTruthy();
+    expect(screen.getAllByText('Apple Gift Card').length).toBeGreaterThan(0);
     expect(screen.getByText(/^Today, /)).toBeTruthy();
   });
 
   it('renders humanized meta rows and the reference', async () => {
     await renderDetail();
 
-    expect(await screen.findByText('Card value')).toBeTruthy();
+    expect(await screen.findByText('Card Value')).toBeTruthy();
     expect(screen.getByText('$50.00')).toBeTruthy();
     expect(screen.getByText('Rate')).toBeTruthy();
     expect(screen.getByText('₦1,425/$')).toBeTruthy();

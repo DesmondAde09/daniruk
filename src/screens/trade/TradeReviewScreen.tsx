@@ -11,7 +11,7 @@ import { useAsync } from '@/hooks/useAsync';
 import { formatNaira, formatRate, formatUsd } from '@/lib/currency';
 import { cardPadding, cardShadow, colors, radius, screenPadding, spacing, typography } from '@/theme/tokens';
 
-interface ReviewParams {
+type ReviewParams = {
   brandId: string;
   amountUsd: string;
   region?: string;
@@ -133,7 +133,7 @@ function ReviewBody({
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.payoutCard}>
-          <Text style={styles.payoutEyebrow}>You'll receive</Text>
+          <Text style={styles.payoutEyebrow}>You&rsquo;ll receive</Text>
           <Text style={styles.payoutAmount}>{formatNaira(quote.payoutKobo)}</Text>
           <Text style={styles.payoutCaption}>
             {`${formatUsd(quote.amountUsd)} ${brand.name} at ${formatRate(quote.ratePerDollar)}`}

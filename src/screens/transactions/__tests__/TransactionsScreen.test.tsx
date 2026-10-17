@@ -9,6 +9,8 @@ import { TransactionsScreen } from '../TransactionsScreen';
 
 jest.mock('expo-router', () => ({
   router: { push: jest.fn() },
+  // Record the focus callback without invoking it; these tests assert the initial load only.
+  useFocusEffect: jest.fn(),
 }));
 
 jest.mock('@/data/transactions', () => ({ getTransactions: jest.fn() }));
