@@ -132,9 +132,12 @@ describe('transactions', () => {
     expect(apple?.amountKobo).toBe(7125000);
     expect(apple?.status).toBe('successful');
 
-    const today = new Date();
+    // Seeded "earlier today" relative to module load; compare recency rather
+    // than calendar day so the assertion survives a midnight crossing.
     const created = new Date(apple?.createdAt ?? '');
-    expect(created.toDateString()).toBe(today.toDateString());
+    const ageMs = Date.now() - created.getTime();
+    expect(ageMs).toBeGreaterThanOrEqual(0);
+    expect(ageMs).toBeLessThan(24 * 3_600_000);
   });
 
   it('filters by type and status', async () => {

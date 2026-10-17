@@ -43,7 +43,8 @@ describe('Transaction detail screen', () => {
     expect(await screen.findByText('+₦71,250')).toBeTruthy();
     expect(screen.getByText('Successful')).toBeTruthy();
     expect(screen.getAllByText('Apple Gift Card').length).toBeGreaterThan(0);
-    expect(screen.getByText(/^Today, /)).toBeTruthy();
+    // The fixture is seeded "2 hours ago", which rolls to "Yesterday" across midnight.
+    expect(screen.getByText(/^(Today|Yesterday), /)).toBeTruthy();
   });
 
   it('renders humanized meta rows and the reference', async () => {

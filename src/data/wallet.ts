@@ -211,8 +211,7 @@ export async function withdrawCrypto(input: WithdrawCryptoInput): Promise<Transa
   if (address.length === 0) {
     throw new Error('Wallet address is required');
   }
-  const newBalance = debitCrypto(input.asset, input.amount);
-  void newBalance;
+  debitCrypto(input.asset, input.amount);
   const units = parseCryptoUnits(input.amount);
   // debitCrypto already validated, so units is non-null here.
   const ngnEquivalentKobo = Number(
