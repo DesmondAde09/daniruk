@@ -3,6 +3,7 @@ import { formatRate, formatUsd } from '@/lib/currency';
 import { withLatency } from './latency';
 import { addTransaction } from './transactions';
 import type { GiftCardBrand, ID, TradeQuote, Transaction } from './types';
+import { creditNgnKobo } from './wallet';
 
 const brands: GiftCardBrand[] = [
   { id: 'apple', name: 'Apple Gift Card', category: 'Shopping', ratePerDollar: 1425, minUsd: 10, maxUsd: 500 },
@@ -29,7 +30,19 @@ function findBrand(brandId: ID): GiftCardBrand {
   return brand;
 }
 
-/** Payout math: amountUsd × ratePerDollar × 100, all integer kobo. */
+export function getGiftCardBrand(brandId: ID): Promise<GiftCardBrand> {
+  const brand = brands.find((entry) => entry.id === brandId);
+  if (!brand) {
+    return Promise.reject(new Error(`Unknown gift card brand: ${brandId}`));
+  }
+  return withLatency({ ...brand });
+}
+
+/**
+ * Payout math: round to cents first, then cents × rate = kobo. Rounding up
+ * front keeps the result an exact integer for fractional dollar amounts
+ * (e.g. $50.55), where the naive `usd * rate * 100` drifts on floats.
+ */
 export async function getTradeQuote(brandId: ID, amountUsd: number): Promise<TradeQuote> {
   const brand = findBrand(brandId);
   if (amountUsd < brand.minUsd || amountUsd > brand.maxUsd) {
@@ -39,7 +52,7 @@ export async function getTradeQuote(brandId: ID, amountUsd: number): Promise<Tra
     brandId: brand.id,
     amountUsd,
     ratePerDollar: brand.ratePerDollar,
-    payoutKobo: amountUsd * brand.ratePerDollar * 100,
+    payoutKobo: Math.round(amountUsd * 100) * brand.ratePerDollar,
   });
 }
 
@@ -50,7 +63,7 @@ export interface SubmitTradeInput {
   cardCode?: string;
 }
 
-/** Confirms a trade: computes the payout and records a successful transaction. */
+/** Confirms a trade: computes the payout, credits the NGN wallet and records a successful transaction. */
 export async function submitTrade(input: SubmitTradeInput): Promise<Transaction> {
   const brand = findBrand(input.brandId);
   const quote = await getTradeQuote(input.brandId, input.amountUsd);
@@ -66,5 +79,6 @@ export async function submitTrade(input: SubmitTradeInput): Promise<Transaction>
       rate: formatRate(brand.ratePerDollar),
     },
   });
+  creditNgnKobo(quote.payoutKobo);
   return withLatency({ ...transaction });
 }

@@ -6,7 +6,7 @@ import { ToastProvider } from '@/components';
 import * as auth from '@/data/auth';
 import { SessionProvider } from '@/auth/SessionProvider';
 
-import OtpScreen from '../(auth)/otp';
+import OtpScreen from '@/app/(auth)/otp';
 
 jest.mock('expo-router', () => ({
   useRouter: () => ({ push: jest.fn(), replace: jest.fn(), back: jest.fn(), canGoBack: () => true }),

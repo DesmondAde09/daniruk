@@ -5,7 +5,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as auth from '@/data/auth';
 import { SessionProvider } from '@/auth/SessionProvider';
 
-import SignupScreen from '../(auth)/signup';
+import SignupScreen from '@/app/(auth)/signup';
 
 const mockPush = jest.fn();
 const mockReplace = jest.fn();

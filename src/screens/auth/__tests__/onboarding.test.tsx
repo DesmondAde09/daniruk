@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react-native';
 import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import Onboarding from '../index';
+import Onboarding from '@/app/index';
 
 const mockPush = jest.fn();
 

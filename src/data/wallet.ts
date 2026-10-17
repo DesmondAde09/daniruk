@@ -43,6 +43,18 @@ export function getWallet(): Promise<Wallet> {
   });
 }
 
+/**
+ * Credits the NGN balance (trade payouts land in the wallet). Mutates the
+ * in-memory mock, like `addTransaction` does for the ledger, so the next
+ * `getWallet()` call reflects the new balance.
+ */
+export function creditNgnKobo(amountKobo: number): void {
+  if (!Number.isInteger(amountKobo) || amountKobo <= 0) {
+    throw new Error('creditNgnKobo expects a positive integer kobo amount');
+  }
+  wallet.ngn.balanceKobo += amountKobo;
+}
+
 export function getBankAccounts(): Promise<BankAccount[]> {
   return withLatency(bankAccounts.map((account) => ({ ...account })));
 }
