@@ -53,3 +53,10 @@ export function markRead(id: ID): Promise<void> {
   }
   return withLatency(undefined);
 }
+
+export function markAllRead(): Promise<void> {
+  notifications.forEach((notification) => {
+    notification.read = true;
+  });
+  return withLatency(undefined);
+}

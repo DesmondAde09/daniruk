@@ -1,23 +1,9 @@
-import React from 'react';
-import { StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { ProfileScreen } from '@/screens/profile/ProfileScreen';
 
-import { EmptyState } from '@/components';
-import { colors } from '@/theme/tokens';
-
-/** Placeholder until the profile screen lands (later ticket). */
-export default function ProfileScreen() {
-  return (
-    <SafeAreaView style={styles.screen} edges={['top']}>
-      <EmptyState icon="user" title="Profile" caption="Coming in a later ticket." />
-    </SafeAreaView>
-  );
+/**
+ * Profile tab route — thin wrapper so the screen component and its tests can
+ * live outside `src/app/` (every file under `src/app/` is treated as a route).
+ */
+export default function ProfileRoute() {
+  return <ProfileScreen />;
 }
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    backgroundColor: colors.surface.base,
-    justifyContent: 'center',
-  },
-});

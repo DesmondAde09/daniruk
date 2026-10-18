@@ -1,4 +1,4 @@
-import { router, useFocusEffect, type Href } from 'expo-router';
+import { router, useFocusEffect } from 'expo-router';
 import React, { useCallback, useRef, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -30,11 +30,6 @@ const RECENT_COUNT = 3;
  * Home (designs 3.png + 4.png). Routed via the thin wrapper at
  * `src/app/(tabs)/index.tsx`; lives here so its tests sit outside `src/app/`
  * (every file under `src/app/` is treated as a route).
- *
- * Routes owned by later tickets are not yet in the typed-routes union;
- * the `as Href` casts below are the call-site suppressions for them and
- * can be dropped as those screens land:
- * `/notifications`, `/wallet/receive`, `/wallet/withdraw`, `/referrals`.
  */
 export function HomeScreen() {
   const { user } = useSession();
@@ -79,7 +74,7 @@ export function HomeScreen() {
           variant="home"
           initials={initials}
           hasUnread={hasUnread}
-          onPressBell={() => router.push('/notifications' as Href)}
+          onPressBell={() => router.push('/notifications')}
           onPressAvatar={() => router.push('/profile')}
         />
 
@@ -97,8 +92,8 @@ export function HomeScreen() {
             wallet={wallet.data}
             balanceHidden={balanceHidden}
             onToggleBalance={() => setBalanceHidden((hidden) => !hidden)}
-            onReceive={() => router.push('/wallet/receive' as Href)}
-            onWithdraw={() => router.push('/wallet/withdraw' as Href)}
+            onReceive={() => router.push('/wallet/receive')}
+            onWithdraw={() => router.push('/wallet/withdraw')}
           />
         ) : null}
 
@@ -135,7 +130,7 @@ export function HomeScreen() {
           </View>
         </View>
 
-        <BannerCard variant="referral" onPress={() => router.push('/referrals' as Href)} />
+        <BannerCard variant="referral" onPress={() => router.push('/referrals')} />
 
         <View style={styles.section}>
           <SectionHeader

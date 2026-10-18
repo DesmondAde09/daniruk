@@ -31,6 +31,9 @@ export const iconNames = [
   'check',
   'chevron-right',
   'chevron-left',
+  'share',
+  'log-out',
+  'help-circle',
 ] as const;
 
 export type IconName = (typeof iconNames)[number];
@@ -206,6 +209,29 @@ export function Icon({ name, size = 24, color = colors.text.primary, unreadDot =
       {name === 'check' && <Polyline points="20 6 9 17 4 12" {...s} />}
       {name === 'chevron-right' && <Polyline points="9 18 15 12 9 6" {...s} />}
       {name === 'chevron-left' && <Polyline points="15 18 9 12 15 6" {...s} />}
+      {name === 'share' && (
+        <>
+          <Circle cx={18} cy={5} r={3} {...s} />
+          <Circle cx={6} cy={12} r={3} {...s} />
+          <Circle cx={18} cy={19} r={3} {...s} />
+          <Line x1={8.6} y1={10.5} x2={15.4} y2={6.5} {...s} />
+          <Line x1={8.6} y1={13.5} x2={15.4} y2={17.5} {...s} />
+        </>
+      )}
+      {name === 'log-out' && (
+        <>
+          <Path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" {...s} />
+          <Polyline points="16 17 21 12 16 7" {...s} />
+          <Line x1={21} y1={12} x2={9} y2={12} {...s} />
+        </>
+      )}
+      {name === 'help-circle' && (
+        <>
+          <Circle cx={12} cy={12} r={9} {...s} />
+          <Path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2.5-3 4" {...s} />
+          <Line x1={12} y1={17.5} x2={12.01} y2={17.5} {...s} />
+        </>
+      )}
     </Svg>
       {name === 'bell' && unreadDot && <View style={styles.unreadDot} />}
     </View>

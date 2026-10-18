@@ -272,6 +272,12 @@ describe('notifications', () => {
     );
     expect(updated?.read).toBe(true);
   });
+
+  it('marks all notifications as read', async () => {
+    await notifications.markAllRead();
+    const list = await notifications.getNotifications();
+    expect(list.every((entry) => entry.read)).toBe(true);
+  });
 });
 
 describe('referrals', () => {
