@@ -1,6 +1,7 @@
 import { withLatency } from './latency';
 import { addTransaction } from './transactions';
 import type { FlightResult, ServicePlan, Transaction } from './types';
+import { debitNgnKobo } from './wallet';
 
 /** The four everyday services shown in the designs (Quick services). */
 export type ServiceId = 'flights' | 'electricity' | 'airtime' | 'data';
@@ -72,8 +73,13 @@ export interface PayBillInput {
   meta?: Record<string, string>;
 }
 
-/** Mock bill payment: records a successful debit and returns the transaction. */
-export function payBill(input: PayBillInput): Promise<Transaction> {
+/**
+ * Mock bill payment: debits the NGN wallet first (throwing on insufficient
+ * funds so no doomed ledger entry is recorded), then records a successful
+ * debit transaction — mirroring `withdrawNgnToBank`.
+ */
+export async function payBill(input: PayBillInput): Promise<Transaction> {
+  debitNgnKobo(Math.abs(input.amountKobo));
   const transaction = addTransaction({
     type: input.type,
     title: input.title,

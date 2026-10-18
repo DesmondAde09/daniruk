@@ -34,8 +34,7 @@ const RECENT_COUNT = 3;
  * Routes owned by later tickets are not yet in the typed-routes union;
  * the `as Href` casts below are the call-site suppressions for them and
  * can be dropped as those screens land:
- * `/notifications`, `/wallet/receive`, `/wallet/withdraw`, `/referrals`,
- * `/services/flights|electricity|airtime|data`.
+ * `/notifications`, `/wallet/receive`, `/wallet/withdraw`, `/referrals`.
  */
 export function HomeScreen() {
   const { user } = useSession();
@@ -116,22 +115,22 @@ export function HomeScreen() {
             <ServiceTile
               variant="flights"
               label="Flights"
-              onPress={() => router.push('/services/flights' as Href)}
+              onPress={() => router.push('/services/flights')}
             />
             <ServiceTile
               variant="electricity"
               label="Electricity"
-              onPress={() => router.push('/services/electricity' as Href)}
+              onPress={() => router.push('/services/electricity')}
             />
             <ServiceTile
               variant="airtime"
               label="Airtime"
-              onPress={() => router.push('/services/airtime' as Href)}
+              onPress={() => router.push('/services/airtime')}
             />
             <ServiceTile
               variant="data"
               label="Data"
-              onPress={() => router.push('/services/data' as Href)}
+              onPress={() => router.push('/services/data')}
             />
           </View>
         </View>

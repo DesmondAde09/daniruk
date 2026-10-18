@@ -19,7 +19,12 @@ export {
   type SegmentedToggleOption,
   type SegmentedToggleProps,
 } from './SegmentedToggle';
-export { ServiceTile, type ServiceTileProps, type ServiceTileVariant } from './ServiceTile';
+export {
+  ServiceTile,
+  serviceTileVariantConfig,
+  type ServiceTileProps,
+  type ServiceTileVariant,
+} from './ServiceTile';
 export { StatusBadge, type StatusBadgeProps } from './StatusBadge';
 export { TabBar } from './TabBar';
 export { TextField, type TextFieldProps } from './TextField';

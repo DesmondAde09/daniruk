@@ -14,7 +14,11 @@ export interface ServiceTileProps {
   onPress?: () => void;
 }
 
-const variantConfig: Record<ServiceTileVariant, { icon: IconName; backgroundColor: string; color: string }> = {
+/** Pastel icon-tile config per service; shared with the services index list rows. */
+export const serviceTileVariantConfig: Record<
+  ServiceTileVariant,
+  { icon: IconName; backgroundColor: string; color: string }
+> = {
   flights: { icon: 'plane', backgroundColor: colors.purple[100], color: colors.purple[600] },
   electricity: { icon: 'bolt', backgroundColor: colors.yellow[100], color: colors.status.pending },
   airtime: { icon: 'phone', backgroundColor: colors.green[50], color: colors.green[700] },
@@ -23,7 +27,7 @@ const variantConfig: Record<ServiceTileVariant, { icon: IconName; backgroundColo
 
 /** White quick-service card with a pastel icon square and label (design 4.png). */
 export function ServiceTile({ variant, label, onPress }: ServiceTileProps) {
-  const config = variantConfig[variant];
+  const config = serviceTileVariantConfig[variant];
   return (
     <Pressable
       onPress={onPress}

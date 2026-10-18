@@ -1,23 +1,10 @@
-import React from 'react';
-import { StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { ServicesIndexScreen } from '@/screens/services/ServicesIndexScreen';
 
-import { EmptyState } from '@/components';
-import { colors } from '@/theme/tokens';
-
-/** Placeholder until the services index lands (later ticket). */
-export default function ServicesScreen() {
-  return (
-    <SafeAreaView style={styles.screen} edges={['top']}>
-      <EmptyState icon="grid" title="Services" caption="Coming in a later ticket." />
-    </SafeAreaView>
-  );
+/**
+ * Services index tab route — thin wrapper so the screen component and its
+ * tests can live outside `src/app/` (every file under `src/app/` is treated
+ * as a route).
+ */
+export default function ServicesRoute() {
+  return <ServicesIndexScreen />;
 }
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    backgroundColor: colors.surface.base,
-    justifyContent: 'center',
-  },
-});
