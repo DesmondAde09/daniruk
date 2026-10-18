@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     ...typography.balance,
   },
   amountCredit: {
-    color: colors.green[700],
+    color: colors.gold[700],
   },
   amountDebit: {
     color: colors.text.primary,

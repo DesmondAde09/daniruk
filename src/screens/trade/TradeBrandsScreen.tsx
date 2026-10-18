@@ -102,7 +102,7 @@ function BrandRow({ brand, onPress }: { brand: GiftCardBrand; onPress: () => voi
       style={({ pressed }) => [styles.row, pressed && styles.rowPressed]}
     >
       <View style={styles.iconTile}>
-        <Icon name="gift" size={22} color={colors.green[700]} />
+        <Icon name="gift" size={22} color={colors.gold[700]} />
       </View>
       <View style={styles.rowText}>
         <Text style={styles.rowTitle}>{brand.name}</Text>
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: radius.md,
-    backgroundColor: colors.green[50],
+    backgroundColor: colors.gold[50],
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -192,6 +192,6 @@ const styles = StyleSheet.create({
   },
   rowRate: {
     ...typography.bodyMedium,
-    color: colors.green[700],
+    color: colors.gold[700],
   },
 });

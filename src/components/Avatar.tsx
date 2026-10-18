@@ -8,7 +8,7 @@ export interface AvatarProps {
   size?: number;
 }
 
-/** Initials circle: avatar.bg background, green.900 text. */
+/** Initials circle: avatar.bg background, gold.900 text. */
 export function Avatar({ initials, size = hitTarget }: AvatarProps) {
   return (
     <View
@@ -29,6 +29,6 @@ const styles = StyleSheet.create({
   initials: {
     ...typography.label,
     fontFamily: fontFamily.semiBold,
-    color: colors.green[900],
+    color: colors.gold[900],
   },
 });

@@ -129,13 +129,13 @@ function ReceiveBody({ wallet }: { wallet: Wallet }) {
           accessibilityLabel={`Copy ${asset} address`}
           style={({ pressed }) => [styles.copyButton, pressed && styles.pressed]}
         >
-          <Icon name="copy" size={18} color={colors.green[700]} />
+          <Icon name="copy" size={18} color={colors.gold[700]} />
           <Text style={styles.copyLabel}>Copy address</Text>
         </Pressable>
       </View>
 
       <View style={styles.noteRow}>
-        <Icon name="shield-check" size={20} color={colors.green[700]} />
+        <Icon name="shield-check" size={20} color={colors.gold[700]} />
         <Text style={styles.noteText}>
           {`Only send ${asset} to this address. Funds sent on another network can't be recovered.`}
         </Text>
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surface.base,
   },
   qrCellFilled: {
-    backgroundColor: colors.green[900],
+    backgroundColor: colors.gold[900],
   },
   balanceLabel: {
     ...typography.caption,
@@ -237,11 +237,11 @@ const styles = StyleSheet.create({
     minHeight: 48,
     borderRadius: radius.md,
     borderWidth: 1.5,
-    borderColor: colors.green[700],
+    borderColor: colors.gold[700],
   },
   copyLabel: {
     ...typography.button,
-    color: colors.green[700],
+    color: colors.gold[700],
   },
   pressed: {
     opacity: 0.85,

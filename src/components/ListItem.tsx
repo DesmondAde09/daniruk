@@ -26,7 +26,7 @@ export function ListItem({ icon, label, onPress, destructive = false }: ListItem
         <Icon
           name={icon}
           size={20}
-          color={destructive ? colors.status.error : colors.green[700]}
+          color={destructive ? colors.status.error : colors.gold[700]}
         />
       </View>
       <Text style={[styles.label, destructive && styles.labelDestructive]}>{label}</Text>
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: radius.md,
-    backgroundColor: colors.green[50],
+    backgroundColor: colors.gold[50],
     alignItems: 'center',
     justifyContent: 'center',
   },

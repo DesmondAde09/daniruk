@@ -33,6 +33,7 @@ export type TransactionType =
   | 'electricity'
   | 'flight'
   | 'receive'
+  | 'transfer'
   | 'withdraw';
 
 export type TransactionStatus = 'successful' | 'pending' | 'failed';
@@ -70,6 +71,20 @@ export interface BankAccount {
   bankName: string;
   accountNumber: string; // 10 digits
   accountName: string; // "resolved" by mock
+}
+
+/** The user's personalized deposit account for bank-transfer top-ups. */
+export interface DepositAccount {
+  bankName: string;
+  accountNumber: string; // 10 digits, displayed grouped "8129 460 173"
+  accountName: string; // "DANIRUK / ADEBAYO OKAFOR"
+}
+
+/** A verified transfer destination: bank + NUBAN + the name a name enquiry returned. */
+export interface TransferRecipient {
+  bankName: string;
+  accountNumber: string; // 10 digits
+  accountName: string; // resolved by mock name enquiry
 }
 
 export interface ServicePlan {

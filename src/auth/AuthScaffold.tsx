@@ -30,7 +30,7 @@ export interface AuthScaffoldProps {
 
 /**
  * Shared auth screen chrome (designs 2.png/5.png): the white rounded sheet on
- * surface.page, ScreenHeader auth variant, green eyebrow, h1 + gray subtitle,
+ * surface.page, ScreenHeader auth variant, gold eyebrow, h1 + gray subtitle,
  * optional segmented toggle, and the bank-grade encryption lock note.
  */
 export function AuthScaffold({
@@ -84,7 +84,7 @@ export function AuthScaffold({
               ) : null}
               <View style={styles.body}>{children}</View>
               <View style={styles.lockNote}>
-                <Icon name="lock" size={18} color={colors.green[700]} />
+                <Icon name="lock" size={18} color={colors.gold[700]} />
                 <Text style={styles.lockNoteText}>
                   Your information is protected with bank-grade encryption.
                 </Text>
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   },
   eyebrow: {
     ...typography.eyebrow,
-    color: colors.green[700],
+    color: colors.gold[700],
   },
   title: {
     ...typography.h1,

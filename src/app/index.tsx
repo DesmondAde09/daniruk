@@ -23,7 +23,7 @@ function FloatingChip({
 }) {
   return (
     <View style={[styles.chip, style]}>
-      <Icon name={icon} size={22} color={colors.green[700]} />
+      <Icon name={icon} size={22} color={colors.gold[700]} />
       <View>
         <Text style={styles.chipTitle}>{title}</Text>
         <Text style={styles.chipSubtitle}>{subtitle}</Text>
@@ -34,7 +34,7 @@ function FloatingChip({
 
 /**
  * Hero illustration from 1.png rebuilt with RN views: a tilted white card with
- * the green "D" badge, a gray placeholder bar, the ₦348,200 balance and three
+ * the gold "D" badge, a gray placeholder bar, the ₦348,200 balance and three
  * pastel squares, plus two floating feature chips, over a dark radial glow.
  */
 function HeroCard() {
@@ -57,7 +57,7 @@ function HeroCard() {
         <View style={styles.heroBar} />
         <Text style={styles.heroBalance}>₦ 348,200</Text>
         <View style={styles.heroSquares}>
-          <View style={[styles.heroSquare, { backgroundColor: colors.green[50] }]} />
+          <View style={[styles.heroSquare, { backgroundColor: colors.gold[50] }]} />
           <View style={[styles.heroSquare, { backgroundColor: colors.yellow[100] }]} />
           <View style={[styles.heroSquare, { backgroundColor: colors.purple[100] }]} />
         </View>
@@ -128,7 +128,7 @@ const HERO_CARD_HEIGHT = 272;
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: colors.green[900],
+    backgroundColor: colors.gold[900],
     paddingHorizontal: spacing[6],
   },
   header: {
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     width: 34,
     height: 34,
     borderRadius: radius.sm + 2,
-    backgroundColor: colors.green[700],
+    backgroundColor: colors.gold[700],
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     ...typography.h2,
     fontSize: 18,
     lineHeight: 24,
-    color: colors.lime[400],
+    color: colors.accent[400],
   },
   heroBar: {
     marginTop: spacing[4],
@@ -229,7 +229,7 @@ const styles = StyleSheet.create({
   },
   eyebrow: {
     ...typography.eyebrow,
-    color: colors.lime[400],
+    color: colors.accent[400],
   },
   headline: {
     ...typography.display,

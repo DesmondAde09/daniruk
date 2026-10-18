@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     ...cardShadow(),
   },
   toastSuccess: {
-    backgroundColor: colors.green[700],
+    backgroundColor: colors.gold[700],
   },
   toastError: {
     backgroundColor: colors.status.error,

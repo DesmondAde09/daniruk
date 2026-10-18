@@ -34,6 +34,10 @@ export const iconNames = [
   'share',
   'log-out',
   'help-circle',
+  'wallet',
+  'card',
+  'info',
+  'landmark',
 ] as const;
 
 export type IconName = (typeof iconNames)[number];
@@ -230,6 +234,36 @@ export function Icon({ name, size = 24, color = colors.text.primary, unreadDot =
           <Circle cx={12} cy={12} r={9} {...s} />
           <Path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2.5-3 4" {...s} />
           <Line x1={12} y1={17.5} x2={12.01} y2={17.5} {...s} />
+        </>
+      )}
+      {name === 'wallet' && (
+        <>
+          <Path d="M20 7H5a2 2 0 0 1 0-4h13v4" {...s} />
+          <Path d="M3 5v13a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1" {...s} />
+          <Line x1={16.5} y1={13.5} x2={16.51} y2={13.5} {...s} />
+        </>
+      )}
+      {name === 'card' && (
+        <>
+          <Rect x={2} y={5} width={20} height={14} rx={2.5} {...s} />
+          <Line x1={2} y1={10} x2={22} y2={10} {...s} />
+        </>
+      )}
+      {name === 'info' && (
+        <>
+          <Circle cx={12} cy={12} r={9} {...s} />
+          <Line x1={12} y1={11} x2={12} y2={16} {...s} />
+          <Line x1={12} y1={8} x2={12.01} y2={8} {...s} />
+        </>
+      )}
+      {name === 'landmark' && (
+        <>
+          <Line x1={3} y1={22} x2={21} y2={22} {...s} />
+          <Line x1={6} y1={18} x2={6} y2={11} {...s} />
+          <Line x1={10} y1={18} x2={10} y2={11} {...s} />
+          <Line x1={14} y1={18} x2={14} y2={11} {...s} />
+          <Line x1={18} y1={18} x2={18} y2={11} {...s} />
+          <Polyline points="12 2 20 7 4 7 12 2" {...s} />
         </>
       )}
     </Svg>

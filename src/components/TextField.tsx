@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     paddingRight: spacing[2],
   },
   inputRowFocused: {
-    borderColor: colors.green[700],
+    borderColor: colors.gold[700],
   },
   inputRowError: {
     borderColor: colors.status.error,

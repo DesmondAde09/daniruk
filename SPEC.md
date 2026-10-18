@@ -49,66 +49,67 @@ Questionnaire resolutions (user-approved defaults, 2026-10-14):
 10. As a user, I want to see my NGN wallet balance prominently, so that I know how much money I have.
 11. As a user, I want to hide/show my balance with an eye toggle, so that I can protect it in public.
 12. As a user, I want to see my crypto balance summary on the wallet card, so that I have a full picture of my funds.
-13. As a user, I want Receive and Withdraw actions on the wallet card, so that I can move money in one tap.
-14. As a user, I want a prominent gift-card trading entry point, so that I can start a trade immediately.
-15. As a user, I want quick access to everyday services (Flights, Electricity, Airtime, Data), so that I can pay bills fast.
-16. As a user, I want a "View all" link to the full services list, so that I can find less common services.
-17. As a user, I want to see a refer-and-earn card, so that I can invite friends and earn.
-18. As a user, I want to see my most recent transactions on Home, so that I can confirm recent activity at a glance.
-19. As a user, I want a notification bell with an unread indicator, so that I know when something needs attention.
-20. As a user, I want a personalized greeting (time-of-day aware), so that the app feels alive.
-21. As a user, I want a visible "Protected by Daniruk Secure" note, so that I trust every transaction is monitored.
+13. As a user, I want Receive, Add money, Transfer, and Withdraw actions on the wallet card, so that I can move money in one tap.
+14. As a user, I want to transfer money to any Nigerian bank account with recipient name verification, so that I can pay people from my wallet.
+15. As a user, I want a prominent gift-card trading entry point, so that I can start a trade immediately.
+16. As a user, I want quick access to everyday services (Flights, Electricity, Airtime, Data), so that I can pay bills fast.
+17. As a user, I want a "View all" link to the full services list, so that I can find less common services.
+18. As a user, I want to see a refer-and-earn card, so that I can invite friends and earn.
+19. As a user, I want to see my most recent transactions on Home, so that I can confirm recent activity at a glance.
+20. As a user, I want a notification bell with an unread indicator, so that I know when something needs attention.
+21. As a user, I want a personalized greeting (time-of-day aware), so that the app feels alive.
+22. As a user, I want a visible "Protected by Daniruk Secure" note, so that I trust every transaction is monitored.
 
 **Trade (gift cards)**
 
-22. As a user, I want to browse gift-card brands with their current rates, so that I can pick the best one.
-23. As a user, I want to search/filter brands, so that I can find my card quickly.
-24. As a user, I want to enter card details (brand, country/currency, value range, amount), so that the app can compute my payout.
-25. As a user, I want to optionally add a card photo (placeholder picker), so that the trade can be verified later.
-26. As a user, I want to see the live rate and exact NGN payout before confirming, so that there are no surprises.
-27. As a user, I want a confirmation step summarizing the trade, so that I can double-check before committing.
-28. As a user, I want a success screen after confirming, so that I know the funds are on the way to my NGN wallet.
-29. As a user, I want my completed trade to appear in my transactions, so that I have a record.
+23. As a user, I want to browse gift-card brands with their current rates, so that I can pick the best one.
+24. As a user, I want to search/filter brands, so that I can find my card quickly.
+25. As a user, I want to enter card details (brand, country/currency, value range, amount), so that the app can compute my payout.
+26. As a user, I want to optionally add a card photo (placeholder picker), so that the trade can be verified later.
+27. As a user, I want to see the live rate and exact NGN payout before confirming, so that there are no surprises.
+28. As a user, I want a confirmation step summarizing the trade, so that I can double-check before committing.
+29. As a user, I want a success screen after confirming, so that I know the funds are on the way to my NGN wallet.
+30. As a user, I want my completed trade to appear in my transactions, so that I have a record.
 
 **Wallet — receive & withdraw**
 
-30. As a user, I want to see my crypto receiving address per asset (BTC, USDT) with a copy button and QR-style placeholder, so that I can receive funds.
-31. As a user, I want to withdraw NGN to a saved bank account, so that I can cash out.
-32. As a user, I want to add a new bank account (bank picker, account number, resolved account name), so that I can withdraw where I want.
-33. As a user, I want to withdraw crypto to an external address with amount + address validation, so that I can move my assets.
-34. As a user, I want clear error states for invalid amounts (below minimum, above balance), so that I don't submit doomed withdrawals.
+31. As a user, I want to see my crypto receiving address per asset (BTC, USDT) with a copy button and QR-style placeholder, so that I can receive funds.
+32. As a user, I want to withdraw NGN to a saved bank account, so that I can cash out.
+33. As a user, I want to add a new bank account (bank picker, account number, resolved account name), so that I can withdraw where I want.
+34. As a user, I want to withdraw crypto to an external address with amount + address validation, so that I can move my assets.
+35. As a user, I want clear error states for invalid amounts (below minimum, above balance), so that I don't submit doomed withdrawals.
 
 **Services**
 
-35. As a user, I want a services index screen listing all bill-payment services, so that I can find any of them.
-36. As a user, I want to buy airtime (network picker, phone, amount), so that I can top up.
-37. As a user, I want to buy data (network, plan picker, phone), so that I can stay online.
-38. As a user, I want to pay electricity (disco picker, meter number, meter type, amount), so that my power stays on.
-39. As a user, I want to search flights (from, to, date, passengers) and see mocked results, so that I can start a booking (mock).
-40. As a user, I want a review + pay confirmation for each service, so that I know what I'm paying before it happens.
-41. As a user, I want success/failure feedback after paying, so that I know the outcome.
+36. As a user, I want a services index screen listing all bill-payment services, so that I can find any of them.
+37. As a user, I want to buy airtime (network picker, phone, amount), so that I can top up.
+38. As a user, I want to buy data (network, plan picker, phone), so that I can stay online.
+39. As a user, I want to pay electricity (disco picker, meter number, meter type, amount), so that my power stays on.
+40. As a user, I want to search flights (from, to, date, passengers) and see mocked results, so that I can start a booking (mock).
+41. As a user, I want a review + pay confirmation for each service, so that I know what I'm paying before it happens.
+42. As a user, I want success/failure feedback after paying, so that I know the outcome.
 
 **Transactions**
 
-42. As a user, I want a full transaction list grouped/scrollable, so that I can review my history.
-43. As a user, I want to filter transactions by type (trade, service, receive, withdraw), so that I can find what I need.
-44. As a user, I want a transaction detail view (amount, fee, reference, status, timestamp), so that I can audit any entry.
-45. As a user, I want clear status badges (Successful, Pending, Failed), so that I can see state at a glance.
-46. As a user, I want an empty state when a filter matches nothing, so that the screen never looks broken.
+43. As a user, I want a full transaction list grouped/scrollable, so that I can review my history.
+44. As a user, I want to filter transactions by type (trade, service, receive, transfer, withdraw), so that I can find what I need.
+45. As a user, I want a transaction detail view (amount, fee, reference, status, timestamp), so that I can audit any entry.
+46. As a user, I want clear status badges (Successful, Pending, Failed), so that I can see state at a glance.
+47. As a user, I want an empty state when a filter matches nothing, so that the screen never looks broken.
 
 **Profile, referrals, notifications**
 
-47. As a user, I want a profile screen with my name, email, and avatar initials, so that I can confirm my identity.
-48. As a user, I want profile actions (edit profile, security, support, log out) as a clean list, so that account management is findable.
-49. As a user, I want a referrals screen with my invite code/link and earnings summary, so that I can share it.
-50. As a user, I want a notifications list with read/unread states, so that I can catch up.
-51. As a user, I want to log out and return to the auth flow, so that my account stays safe on shared devices.
+48. As a user, I want a profile screen with my name, email, and avatar initials, so that I can confirm my identity.
+49. As a user, I want profile actions (edit profile, security, support, log out) as a clean list, so that account management is findable.
+50. As a user, I want a referrals screen with my invite code/link and earnings summary, so that I can share it.
+51. As a user, I want a notifications list with read/unread states, so that I can catch up.
+52. As a user, I want to log out and return to the auth flow, so that my account stays safe on shared devices.
 
 **Cross-cutting**
 
-52. As a user, I want every async screen to show a themed loading state, so that waits feel intentional.
-53. As a user, I want every screen to render correctly on Android and iOS, so that the app feels native on my phone.
-54. As a user, I want the ₦ symbol to render correctly on both platforms, so that amounts are never ambiguous.
+53. As a user, I want every async screen to show a themed loading state, so that waits feel intentional.
+54. As a user, I want every screen to render correctly on Android and iOS, so that the app feels native on my phone.
+55. As a user, I want the ₦ symbol to render correctly on both platforms, so that amounts are never ambiguous.
 
 ## Screen List & Navigation (Expo Router)
 
@@ -142,8 +143,11 @@ app/
     flights.tsx               Search + mocked results         [extends theme]
   wallet/
     receive.tsx               Per-asset address + copy        [extends theme]
+    add-money.tsx             Add money: funding methods      [some_screens/2.jpg]
+    bank-transfer.tsx         Add money: bank transfer        [some_screens/1.jpg]
     withdraw.tsx              NGN bank or crypto withdraw     [extends theme]
     add-bank-account.tsx      Bank picker + account number    [extends theme]
+    transfer.tsx              NGN transfer to any bank        [extends theme]
   transactions/
     [id].tsx                  Transaction detail              [extends theme]
   referrals.tsx               Refer & earn                    [extends theme]
@@ -154,6 +158,8 @@ app/
 - The raised Trade tab routes to `/(tabs)/trade` like any other tab; only its tab-bar rendering is special.
 
 ## Design System (extracted from the design files)
+
+> **Retheme (2026-10-18):** the brand color is now **gold**, not green. The `green.*` ramp below was replaced by a `gold.*` ramp and `lime.400` by `accent.400` in `theme/tokens.ts` (gold.950 `#231D0F`, gold.900 `#3E3212`, gold.800 `#57451A`, gold.700 `#8A6D1F`, gold.100 `#F3E7C1`, gold.50 `#FBF4DC`, accent.400 `#F2C24B`); neutrals were warmed to match. Semantic status colors are unchanged. The green values below are kept as the historical record of the original designs.
 
 All values live in `theme/tokens.ts`. Screens consume tokens; no magic numbers.
 
@@ -225,7 +231,7 @@ Built once in `components/`, consumed by all screens.
 | `AmountInput` | ₦-prefixed numeric, min/max validation | Uses currency util |
 | `ScreenHeader` | back + centered logo (auth); logo + bell + avatar (home) | |
 | `Logo` | lime badge "D" + "daniruk" wordmark; light/dark variants | |
-| `WalletCard` | balance, hidden-balance toggle, crypto row, Receive/Withdraw | Design 4.png |
+| `WalletCard` | balance, hidden-balance toggle, crypto row, Receive/Add money/Transfer/Withdraw | Design 4.png |
 | `BannerCard` | lime trade banner; purple referral card | |
 | `ServiceTile` | pastel icon bg + label (4 color variants) | |
 | `TransactionRow` | icon, title, timestamp + ref, signed amount, status badge | |
@@ -266,7 +272,7 @@ interface CryptoHolding {
   address: string;
 }
 
-type TransactionType = "trade" | "airtime" | "data" | "electricity" | "flight" | "receive" | "withdraw";
+type TransactionType = "trade" | "airtime" | "data" | "electricity" | "flight" | "receive" | "transfer" | "withdraw";
 type TransactionStatus = "successful" | "pending" | "failed";
 
 interface Transaction {
@@ -302,6 +308,12 @@ interface BankAccount {
   bankName: string;
   accountNumber: string;     // 10 digits
   accountName: string;       // "resolved" by mock
+}
+
+interface TransferRecipient {  // a verified transfer destination (name enquiry result)
+  bankName: string;
+  accountNumber: string;     // 10 digits (NUBAN)
+  accountName: string;       // resolved by mock name enquiry
 }
 
 interface ServicePlan {      // data bundles, electricity discos, networks

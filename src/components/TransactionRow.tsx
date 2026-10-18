@@ -21,6 +21,7 @@ const typeIcon: Record<TransactionType, IconName> = {
   electricity: 'bolt',
   flight: 'plane',
   receive: 'arrow-down-left',
+  transfer: 'landmark',
   withdraw: 'arrow-up-right',
 };
 
@@ -34,7 +35,7 @@ export function TransactionRow({ transaction, onPress }: TransactionRowProps) {
       style={({ pressed }) => [styles.row, pressed && styles.pressed]}
     >
       <View style={styles.iconTile}>
-        <Icon name={typeIcon[transaction.type]} size={20} color={colors.green[700]} />
+        <Icon name={typeIcon[transaction.type]} size={20} color={colors.gold[700]} />
       </View>
       <View style={styles.details}>
         <Text style={styles.title} numberOfLines={1}>
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: radius.md,
-    backgroundColor: colors.green[100],
+    backgroundColor: colors.gold[100],
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
     ...typography.bodyMedium,
   },
   amountCredit: {
-    color: colors.green[700],
+    color: colors.gold[700],
   },
   amountDebit: {
     color: colors.text.primary,

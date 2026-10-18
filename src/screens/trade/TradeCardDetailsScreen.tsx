@@ -99,7 +99,7 @@ function DetailsForm({ brand }: { brand: GiftCardBrand }) {
     >
       <View style={styles.brandCard}>
         <View style={styles.brandIconTile}>
-          <Icon name="gift" size={22} color={colors.green[700]} />
+          <Icon name="gift" size={22} color={colors.gold[700]} />
         </View>
         <View style={styles.brandText}>
           <Text style={styles.brandName}>{brand.name}</Text>
@@ -175,7 +175,7 @@ function DetailsForm({ brand }: { brand: GiftCardBrand }) {
         <Icon
           name={photoAttached ? 'check' : 'plus'}
           size={22}
-          color={photoAttached ? colors.green[700] : colors.text.muted}
+          color={photoAttached ? colors.gold[700] : colors.text.muted}
         />
         <View style={styles.photoText}>
           <Text style={[styles.photoTitle, photoAttached && styles.photoTitleAttached]}>
@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: radius.md,
-    backgroundColor: colors.green[50],
+    backgroundColor: colors.gold[50],
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
   },
   rateValue: {
     ...typography.bodyMedium,
-    color: colors.green[700],
+    color: colors.gold[700],
   },
   rateCaption: {
     ...typography.caption,
@@ -293,7 +293,7 @@ const styles = StyleSheet.create({
     paddingVertical: spacing[3],
   },
   regionRowSelected: {
-    borderColor: colors.green[700],
+    borderColor: colors.gold[700],
   },
   radio: {
     width: 20,
@@ -305,13 +305,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   radioSelected: {
-    borderColor: colors.green[700],
+    borderColor: colors.gold[700],
   },
   radioDot: {
     width: 10,
     height: 10,
     borderRadius: radius.pill,
-    backgroundColor: colors.green[700],
+    backgroundColor: colors.gold[700],
   },
   regionLabel: {
     ...typography.body,
@@ -334,9 +334,9 @@ const styles = StyleSheet.create({
     paddingVertical: spacing[4],
   },
   photoPickerAttached: {
-    borderColor: colors.green[700],
+    borderColor: colors.gold[700],
     borderStyle: 'solid',
-    backgroundColor: colors.green[50],
+    backgroundColor: colors.gold[50],
   },
   photoText: {
     flex: 1,
@@ -347,7 +347,7 @@ const styles = StyleSheet.create({
     color: colors.text.body,
   },
   photoTitleAttached: {
-    color: colors.green[700],
+    color: colors.gold[700],
   },
   photoCaption: {
     ...typography.caption,

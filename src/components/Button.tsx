@@ -22,8 +22,8 @@ export interface ButtonProps {
 
 const spinnerColor: Record<ButtonVariant, string> = {
   primary: colors.text.inverse,
-  accent: colors.green[900],
-  ghost: colors.green[700],
+  accent: colors.gold[900],
+  ghost: colors.gold[700],
 };
 
 export function Button({
@@ -70,7 +70,7 @@ export function Button({
             <Icon
               name="arrow-right"
               size={20}
-              color={variant === 'primary' ? colors.text.inverse : colors.green[900]}
+              color={variant === 'primary' ? colors.text.inverse : colors.gold[900]}
             />
           )}
         </>
@@ -93,10 +93,10 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
   primary: {
-    backgroundColor: colors.green[700],
+    backgroundColor: colors.gold[700],
   },
   accent: {
-    backgroundColor: colors.lime[400],
+    backgroundColor: colors.accent[400],
   },
   ghost: {
     backgroundColor: 'transparent',
@@ -114,9 +114,9 @@ const styles = StyleSheet.create({
     color: colors.text.inverse,
   },
   labelAccent: {
-    color: colors.green[900],
+    color: colors.gold[900],
   },
   labelGhost: {
-    color: colors.green[700],
+    color: colors.gold[700],
   },
 });

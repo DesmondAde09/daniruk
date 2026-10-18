@@ -20,7 +20,7 @@ const TAB_CONFIG: Record<string, { icon: IconName; label: string }> = {
 /**
  * Custom bottom tab bar (designs 3.png/4.png). Wire via the `tabBar` prop on
  * `Tabs` from `expo-router/js-tabs`: `tabBar={(props) => <TabBar {...props} />}`.
- * The center Trade tab renders as a raised green.700 circle without a label.
+ * The center Trade tab renders as a raised gold.700 circle without a label.
  */
 export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   const insets = useSafeAreaInsets();
@@ -68,7 +68,7 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
           );
         }
 
-        const color = focused ? colors.green[700] : colors.text.muted;
+        const color = focused ? colors.gold[700] : colors.text.muted;
         return (
           <Pressable
             key={route.key}
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     width: CENTER_SIZE,
     height: CENTER_SIZE,
     borderRadius: CENTER_SIZE / 2,
-    backgroundColor: colors.green[700],
+    backgroundColor: colors.gold[700],
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: -28,

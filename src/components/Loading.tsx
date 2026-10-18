@@ -9,11 +9,11 @@ export interface LoadingProps {
   label?: string;
 }
 
-/** Centered green spinner with an optional caption. */
+/** Centered gold spinner with an optional caption. */
 export function Loading({ label }: LoadingProps) {
   return (
     <View style={styles.container}>
-      <ActivityIndicator size="large" color={colors.green[700]} />
+      <ActivityIndicator size="large" color={colors.gold[700]} />
       {label ? <Text style={styles.label}>{label}</Text> : null}
     </View>
   );

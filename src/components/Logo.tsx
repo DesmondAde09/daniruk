@@ -6,9 +6,9 @@ import { colors, radius, spacing, typography } from '@/theme/tokens';
 export interface LogoProps {
   /**
    * `light` = for light backgrounds (auth header, home header):
-   * green.700 badge with lime "D", dark wordmark (designs 2/4/5.png).
-   * `dark` = for the green onboarding background (design 1.png):
-   * lime badge with green.900 "D", white wordmark.
+   * gold.700 badge with accent "D", dark wordmark (designs 2/4/5.png).
+   * `dark` = for the dark-bronze onboarding background (design 1.png):
+   * accent badge with gold.900 "D", white wordmark.
    */
   variant?: 'light' | 'dark';
 }
@@ -44,19 +44,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   badgeOnLight: {
-    backgroundColor: colors.green[700],
+    backgroundColor: colors.gold[700],
   },
   badgeOnDark: {
-    backgroundColor: colors.lime[400],
+    backgroundColor: colors.accent[400],
   },
   badgeLetter: {
     ...typography.h2,
   },
   badgeLetterOnLight: {
-    color: colors.lime[400],
+    color: colors.accent[400],
   },
   badgeLetterOnDark: {
-    color: colors.green[900],
+    color: colors.gold[900],
   },
   wordmark: {
     ...typography.h2,

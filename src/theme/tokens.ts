@@ -1,32 +1,33 @@
 import { Platform, type TextStyle, type ViewStyle } from 'react-native';
 
 /**
- * Design tokens for Daniruk, extracted from the design files (SPEC.md §Design System).
- * Screens consume these tokens — no magic numbers in components.
+ * Design tokens for Daniruk. The brand color is gold (rethemed 2026-10-18
+ * from the original green extracted in SPEC.md §Design System); screens
+ * consume these tokens — no magic numbers in components.
  */
 
 export const colors = {
-  green: {
-    950: '#15221D', // headings / near-black text
-    900: '#193A31', // onboarding background
-    800: '#21493C', // wallet card
-    700: '#2A5A4A', // primary buttons, active states, links, eyebrows (light bg)
-    100: '#DFF1EA', // transaction icon tint
-    50: '#E6F5EE', // airtime icon tile
+  gold: {
+    950: '#231D0F', // headings / near-black text (warm)
+    900: '#3E3212', // onboarding background (deep bronze)
+    800: '#57451A', // wallet card
+    700: '#8A6D1F', // primary buttons, active states, links, eyebrows (light bg)
+    100: '#F3E7C1', // transaction icon tint
+    50: '#FBF4DC', // airtime icon tile
   },
-  lime: {
-    400: '#C5EA82', // accent: CTA on dark, logo badge, trade banner
+  accent: {
+    400: '#F2C24B', // accent: CTA on dark, logo badge, trade banner
   },
   surface: {
-    page: '#E7EBE8', // outer page background
-    base: '#F5F7F5', // home background, inactive toggle
-    subtle: '#F7F8F6', // lock-note / info rows
+    page: '#ECE9E2', // outer page background
+    base: '#F7F5F0', // home background, inactive toggle
+    subtle: '#F8F6F1', // lock-note / info rows
     card: '#FFFFFF', // cards, inputs, tab bar
   },
   text: {
-    primary: '#15221D',
-    body: '#56645E',
-    muted: '#969E9B',
+    primary: '#231D0F',
+    body: '#635E52',
+    muted: '#9D988C',
     inverse: '#FFFFFF',
   },
   purple: {
@@ -41,7 +42,7 @@ export const colors = {
     100: '#EAF2FE', // data tile
   },
   avatar: {
-    bg: '#D9E5DF',
+    bg: '#E9E2D0',
   },
   status: {
     success: '#2A5A4A',
@@ -108,14 +109,14 @@ export const radius = {
 export const hitTarget = 44;
 
 /**
- * The single `card` shadow: soft, low-opacity green-black.
+ * The single `card` shadow: soft, low-opacity warm-black.
  * iOS gets shadow props; Android gets elevation.
  */
 export function cardShadow(): ViewStyle {
   return (
     Platform.select<ViewStyle>({
       ios: {
-        shadowColor: colors.green[950],
+        shadowColor: colors.gold[950],
         shadowOpacity: 0.08,
         shadowRadius: 16,
         shadowOffset: { width: 0, height: 6 },

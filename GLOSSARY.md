@@ -29,11 +29,13 @@ Domain language for the Daniruk frontend. Implementation details live in `SPEC.m
 - **Plan** — a purchasable option within a Service (data bundle, electricity disco, mobile network).
 - **Bank Account** — a saved withdrawal destination: bank name, 10-digit account number, resolved account name.
 - **Withdrawal** — moving money out: NGN to a Bank Account, or crypto to an external Address.
-- **Receive** — moving money in: displaying the User's crypto Address for an incoming transfer.
+- **Transfer** — sending NGN from the User's wallet to another person's bank account, verified by Name Enquiry before money moves.
+- **Name Enquiry** — the lookup that resolves a 10-digit account number at a bank to the account holder's name, so the sender can confirm the recipient.
+- **Receive** — moving money in: displaying the User's crypto Address for an incoming payment.
 
 ## Records
 
-- **Transaction** — a ledger entry for any money movement: Trade, Service payment, Receive, or Withdrawal. Always has an amount, a status, and a Reference.
+- **Transaction** — a ledger entry for any money movement: Trade, Service payment, Receive, Withdrawal, or Transfer. Always has an amount, a status, and a Reference.
 - **Reference** — a Transaction's human-readable identifier (e.g. DNR-284910).
 - **Status** — a Transaction's lifecycle state: `successful`, `pending`, or `failed`.
 

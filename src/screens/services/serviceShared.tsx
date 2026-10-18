@@ -45,7 +45,7 @@ export const serviceScreenStyles = StyleSheet.create({
   },
 });
 
-export function ServiceScreenHeader({ title }: { title: string }) {
+export function ServiceScreenHeader({ title, trailing }: { title: string; trailing?: ReactNode }) {
   return (
     <View style={headerStyles.header}>
       <IconButton
@@ -55,7 +55,7 @@ export function ServiceScreenHeader({ title }: { title: string }) {
         accessibilityLabel="Go back"
       />
       <Text style={headerStyles.headerTitle}>{title}</Text>
-      <View style={headerStyles.headerSpacer} />
+      {trailing ?? <View style={headerStyles.headerSpacer} />}
     </View>
   );
 }
@@ -129,7 +129,7 @@ const radioStyles = StyleSheet.create({
     paddingVertical: spacing[3],
   },
   rowSelected: {
-    borderColor: colors.green[700],
+    borderColor: colors.gold[700],
   },
   radio: {
     width: 20,
@@ -141,13 +141,13 @@ const radioStyles = StyleSheet.create({
     justifyContent: 'center',
   },
   radioSelected: {
-    borderColor: colors.green[700],
+    borderColor: colors.gold[700],
   },
   radioDot: {
     width: 10,
     height: 10,
     borderRadius: radius.pill,
-    backgroundColor: colors.green[700],
+    backgroundColor: colors.gold[700],
   },
   text: {
     flex: 1,
@@ -163,7 +163,7 @@ const radioStyles = StyleSheet.create({
   },
   trailing: {
     ...typography.bodyMedium,
-    color: colors.green[700],
+    color: colors.gold[700],
   },
   pressed: {
     opacity: 0.85,
@@ -266,7 +266,7 @@ export function PaymentSuccess({ title, caption, transaction }: PaymentSuccessPr
     <View style={successStyles.successScreen}>
       <View style={successStyles.successContent}>
         <View style={successStyles.checkCircle}>
-          <Icon name="check" size={40} color={colors.green[700]} />
+          <Icon name="check" size={40} color={colors.gold[700]} />
         </View>
         <Text style={successStyles.successTitle}>{title}</Text>
         <Text style={successStyles.successAmount}>
@@ -297,7 +297,7 @@ const successStyles = StyleSheet.create({
     width: 96,
     height: 96,
     borderRadius: 48,
-    backgroundColor: colors.green[50],
+    backgroundColor: colors.gold[50],
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: spacing[2],
@@ -309,7 +309,7 @@ const successStyles = StyleSheet.create({
   },
   successAmount: {
     ...typography.balance,
-    color: colors.green[700],
+    color: colors.gold[700],
   },
   successCaption: {
     ...typography.body,

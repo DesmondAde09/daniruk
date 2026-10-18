@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   },
   forgotLinkText: {
     ...typography.label,
-    color: colors.green[700],
+    color: colors.gold[700],
   },
   pressed: {
     opacity: 0.85,

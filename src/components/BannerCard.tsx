@@ -26,7 +26,7 @@ export interface ReferralBannerProps extends BannerCardBaseProps {
 export type BannerCardProps = TradeBannerProps | ReferralBannerProps;
 
 /**
- * Home banners: `trade` is the lime gift-card banner; `referral` is the purple
+ * Home banners: `trade` is the gold-accent gift-card banner; `referral` is the purple
  * refer-and-earn card with decorative rotated tiles.
  */
 export function BannerCard(props: BannerCardProps) {
@@ -44,14 +44,14 @@ export function BannerCard(props: BannerCardProps) {
         style={({ pressed }) => [styles.tradeCard, pressed && styles.pressed]}
       >
         <View style={styles.tradeIconTile}>
-          <Icon name="gift" size={24} color={colors.lime[400]} />
+          <Icon name="gift" size={24} color={colors.accent[400]} />
         </View>
         <View style={styles.tradeText}>
           <Text style={styles.tradeEyebrow}>{eyebrow}</Text>
           <Text style={styles.tradeTitle}>{title}</Text>
           <Text style={styles.tradeCaption}>{caption}</Text>
         </View>
-        <Icon name="arrow-right" size={20} color={colors.green[900]} />
+        <Icon name="arrow-right" size={20} color={colors.gold[900]} />
       </Pressable>
     );
   }
@@ -73,12 +73,12 @@ export function BannerCard(props: BannerCardProps) {
         <Text style={styles.referralTitle}>{title}</Text>
         <View style={styles.referralLink}>
           <Text style={styles.referralLinkLabel}>{linkLabel}</Text>
-          <Icon name="arrow-right" size={16} color={colors.green[700]} />
+          <Icon name="arrow-right" size={16} color={colors.gold[700]} />
         </View>
       </View>
       <View style={styles.referralArt} pointerEvents="none">
         <View style={styles.purpleTile} />
-        <View style={styles.greenTile}>
+        <View style={styles.accentTile}>
           <Text style={styles.nairaGlyph}>₦</Text>
         </View>
       </View>
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: spacing[3],
-    backgroundColor: colors.lime[400],
+    backgroundColor: colors.accent[400],
     borderRadius: radius.lg,
     padding: cardPadding,
     alignSelf: 'stretch',
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: radius.md,
-    backgroundColor: colors.green[800],
+    backgroundColor: colors.gold[800],
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -115,15 +115,15 @@ const styles = StyleSheet.create({
   },
   tradeEyebrow: {
     ...typography.eyebrow,
-    color: colors.green[800],
+    color: colors.gold[800],
   },
   tradeTitle: {
     ...typography.button,
-    color: colors.green[950],
+    color: colors.gold[950],
   },
   tradeCaption: {
     ...typography.caption,
-    color: colors.green[800],
+    color: colors.gold[800],
   },
   referralCard: {
     flexDirection: 'row',
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
   },
   referralLinkLabel: {
     ...typography.label,
-    color: colors.green[700],
+    color: colors.gold[700],
   },
   referralArt: {
     width: TILE * 1.6,
@@ -169,18 +169,18 @@ const styles = StyleSheet.create({
     backgroundColor: colors.purple[600],
     transform: [{ rotate: '-14deg' }, { translateX: 12 }, { translateY: 10 }],
   },
-  greenTile: {
+  accentTile: {
     position: 'absolute',
     width: TILE,
     height: TILE,
     borderRadius: radius.lg,
-    backgroundColor: colors.green[800],
+    backgroundColor: colors.gold[800],
     alignItems: 'center',
     justifyContent: 'center',
     transform: [{ rotate: '8deg' }, { translateX: -10 }, { translateY: -8 }],
   },
   nairaGlyph: {
     ...typography.h1,
-    color: colors.lime[400],
+    color: colors.accent[400],
   },
 });

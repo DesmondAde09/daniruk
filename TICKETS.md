@@ -97,3 +97,11 @@ Broken down from `SPEC.md` (approved 2026-10-14). Tracer-bullet slices: each tic
 **Blocked by:** 11
 
 **What it delivers:** The `code-review` skill run over the whole diff against SPEC.md and the designs; inconsistencies fixed or documented; a short retro written into `RETRO.md`.
+
+---
+
+## 13: NGN bank transfer
+
+**Blocked by:** 08
+
+**What it delivers:** The wallet card gains a Transfer action (Receive / Add money / Transfer / Withdraw) routing to a transfer flow in the Nigerian idiom: searchable bank picker, 10-digit NUBAN with automatic name enquiry (mock), amount validated against min and balance plus an optional remark, review sheet, success; recent recipients are derived from the ledger, and transfers are recorded as a new 'transfer' transaction type with a landmark icon.

@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react-native';
+import { router } from 'expo-router';
 import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
@@ -31,6 +32,7 @@ jest.mock('@/data/notifications', () => ({ getNotifications: jest.fn() }));
 const mockGetWallet = getWallet as jest.Mock;
 const mockGetTransactions = getTransactions as jest.Mock;
 const mockGetNotifications = getNotifications as jest.Mock;
+const mockPush = router.push as jest.Mock;
 
 const initialMetrics = {
   frame: { x: 0, y: 0, width: 390, height: 844 },
@@ -72,6 +74,26 @@ describe('Home screen', () => {
 
     await fireEvent.press(screen.getByLabelText('Show balance'));
     expect(screen.getByText('₦348,200.00')).toBeTruthy();
+  });
+
+  it('routes Receive, Add money, Transfer, and Withdraw to their wallet flows', async () => {
+    await renderHome();
+    expect(await screen.findByText('₦348,200.00')).toBeTruthy();
+
+    await fireEvent.press(screen.getByText('Receive'));
+    expect(mockPush).toHaveBeenCalledWith('/wallet/receive');
+
+    await fireEvent.press(screen.getByText('Add money'));
+    expect(mockPush).toHaveBeenCalledWith('/wallet/add-money');
+
+    await fireEvent.press(screen.getByText('Transfer'));
+    expect(mockPush).toHaveBeenCalledWith('/wallet/transfer');
+
+    await fireEvent.press(screen.getByText('Withdraw'));
+    expect(mockPush).toHaveBeenCalledWith('/wallet/withdraw');
+
+    // Flush the pending async sections so their state updates land inside act().
+    await screen.findByText('Apple Gift Card');
   });
 
   it('renders all four quick services', async () => {

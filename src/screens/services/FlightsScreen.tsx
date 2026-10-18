@@ -345,15 +345,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing[2],
   },
   dateChipSelected: {
-    borderColor: colors.green[700],
-    backgroundColor: colors.green[50],
+    borderColor: colors.gold[700],
+    backgroundColor: colors.gold[50],
   },
   dateChipLabel: {
     ...typography.label,
     color: colors.text.body,
   },
   dateChipLabelSelected: {
-    color: colors.green[700],
+    color: colors.gold[700],
   },
   resultsList: {
     gap: spacing[3],
@@ -376,7 +376,7 @@ const styles = StyleSheet.create({
   },
   price: {
     ...typography.bodyMedium,
-    color: colors.green[700],
+    color: colors.gold[700],
   },
   flightRoute: {
     flexDirection: 'row',

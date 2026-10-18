@@ -1,23 +1,15 @@
-import React from 'react';
-import { StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { KeyboardAvoiding } from '@/components';
+import { TradeBrandsScreen } from '@/screens/trade/TradeBrandsScreen';
 
-import { EmptyState } from '@/components';
-import { colors } from '@/theme/tokens';
-
-/** Placeholder until the trade flow lands (later ticket). */
-export default function TradeScreen() {
+/**
+ * Trade tab route — thin wrapper so the screen component and its tests can
+ * live outside `src/app/` (every file under `src/app/` is treated as a route).
+ * KeyboardAvoiding keeps the brand search field clear of the keyboard.
+ */
+export default function TradeRoute() {
   return (
-    <SafeAreaView style={styles.screen} edges={['top']}>
-      <EmptyState icon="gift" title="Trade" caption="Coming in a later ticket." />
-    </SafeAreaView>
+    <KeyboardAvoiding>
+      <TradeBrandsScreen />
+    </KeyboardAvoiding>
   );
 }
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    backgroundColor: colors.surface.base,
-    justifyContent: 'center',
-  },
-});

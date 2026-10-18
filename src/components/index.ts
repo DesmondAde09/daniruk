@@ -7,6 +7,7 @@ export { EmptyState, type EmptyStateProps } from './EmptyState';
 export { ErrorState, type ErrorStateProps } from './ErrorState';
 export { Icon, iconNames, type IconName, type IconProps } from './Icon';
 export { IconButton, type IconButtonProps } from './IconButton';
+export { KeyboardAvoiding } from './KeyboardAvoiding';
 export { ListItem, type ListItemProps } from './ListItem';
 export { Loading, RowSkeleton, type LoadingProps } from './Loading';
 export { Logo, type LogoProps } from './Logo';

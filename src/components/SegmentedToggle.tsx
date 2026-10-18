@@ -16,7 +16,7 @@ export interface SegmentedToggleProps<T extends string> {
 
 /**
  * Two-option pill toggle (Log in / Sign up on the auth screens).
- * Active option: white card + green.700 border; inactive: transparent.
+ * Active option: white card + gold.700 border; inactive: transparent.
  */
 export function SegmentedToggle<T extends string>({
   options,
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   optionActive: {
     backgroundColor: colors.surface.card,
     borderWidth: 1.5,
-    borderColor: colors.green[700],
+    borderColor: colors.gold[700],
   },
   pressed: {
     opacity: 0.85,

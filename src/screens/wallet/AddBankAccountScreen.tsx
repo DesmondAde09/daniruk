@@ -92,7 +92,7 @@ function AddAccountForm({ banks }: { banks: string[] }) {
       <View style={styles.resolvedContent}>
         <View style={styles.resolvedCard}>
           <View style={styles.resolvedIcon}>
-            <Icon name="check" size={28} color={colors.green[700]} />
+            <Icon name="check" size={28} color={colors.gold[700]} />
           </View>
           <Text style={styles.resolvedName}>{resolvedName}</Text>
           <Text style={styles.resolvedCaption}>{`${bankName} · ${accountNumber}`}</Text>
@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
     paddingVertical: spacing[3],
   },
   bankRowSelected: {
-    borderColor: colors.green[700],
+    borderColor: colors.gold[700],
   },
   radio: {
     width: 20,
@@ -236,13 +236,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   radioSelected: {
-    borderColor: colors.green[700],
+    borderColor: colors.gold[700],
   },
   radioDot: {
     width: 10,
     height: 10,
     borderRadius: radius.pill,
-    backgroundColor: colors.green[700],
+    backgroundColor: colors.gold[700],
   },
   bankLabel: {
     ...typography.body,
@@ -275,7 +275,7 @@ const styles = StyleSheet.create({
     width: 64,
     height: 64,
     borderRadius: 32,
-    backgroundColor: colors.green[50],
+    backgroundColor: colors.gold[50],
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: spacing[1],

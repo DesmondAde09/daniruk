@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
   },
   markAllText: {
     ...typography.bodyMedium,
-    color: colors.green[700],
+    color: colors.gold[700],
   },
   list: {
     paddingHorizontal: screenPadding,
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     padding: spacing[4],
   },
   rowUnread: {
-    backgroundColor: colors.green[50],
+    backgroundColor: colors.gold[50],
   },
   rowPressed: {
     opacity: 0.85,
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     width: 8,
     height: 8,
     borderRadius: radius.pill,
-    backgroundColor: colors.green[700],
+    backgroundColor: colors.gold[700],
   },
   rowText: {
     flex: 1,

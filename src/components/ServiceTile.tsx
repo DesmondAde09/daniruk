@@ -21,7 +21,7 @@ export const serviceTileVariantConfig: Record<
 > = {
   flights: { icon: 'plane', backgroundColor: colors.purple[100], color: colors.purple[600] },
   electricity: { icon: 'bolt', backgroundColor: colors.yellow[100], color: colors.status.pending },
-  airtime: { icon: 'phone', backgroundColor: colors.green[50], color: colors.green[700] },
+  airtime: { icon: 'phone', backgroundColor: colors.gold[50], color: colors.gold[700] },
   data: { icon: 'wifi', backgroundColor: colors.blue[100], color: componentColors.blue600 },
 };
 

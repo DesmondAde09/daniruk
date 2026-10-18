@@ -15,15 +15,19 @@ export interface WalletCardProps {
   balanceHidden: boolean;
   onToggleBalance: () => void;
   onReceive: () => void;
+  onAddMoney: () => void;
+  onTransfer: () => void;
   onWithdraw: () => void;
 }
 
-/** Green.800 wallet card from design 4.png: NGN balance + eye toggle, crypto row, Receive/Withdraw. */
+/** Gold.800 wallet card from design 4.png (rethemed): NGN balance + eye toggle, crypto row, Receive/Add money/Transfer/Withdraw. */
 export function WalletCard({
   wallet,
   balanceHidden,
   onToggleBalance,
   onReceive,
+  onAddMoney,
+  onTransfer,
   onWithdraw,
 }: WalletCardProps) {
   return (
@@ -69,7 +73,29 @@ export function WalletCard({
           style={({ pressed }) => [styles.actionButton, pressed && styles.pressed]}
         >
           <Icon name="arrow-down-left" size={18} color={colors.text.inverse} />
-          <Text style={styles.actionLabel}>Receive</Text>
+          <Text style={styles.actionLabel} numberOfLines={1}>
+            Receive
+          </Text>
+        </Pressable>
+        <Pressable
+          onPress={onAddMoney}
+          accessibilityRole="button"
+          style={({ pressed }) => [styles.actionButton, pressed && styles.pressed]}
+        >
+          <Icon name="plus" size={18} color={colors.text.inverse} />
+          <Text style={styles.actionLabel} numberOfLines={1}>
+            Add money
+          </Text>
+        </Pressable>
+        <Pressable
+          onPress={onTransfer}
+          accessibilityRole="button"
+          style={({ pressed }) => [styles.actionButton, pressed && styles.pressed]}
+        >
+          <Icon name="landmark" size={18} color={colors.text.inverse} />
+          <Text style={styles.actionLabel} numberOfLines={1}>
+            Transfer
+          </Text>
         </Pressable>
         <Pressable
           onPress={onWithdraw}
@@ -77,7 +103,9 @@ export function WalletCard({
           style={({ pressed }) => [styles.actionButton, pressed && styles.pressed]}
         >
           <Icon name="arrow-up-right" size={18} color={colors.text.inverse} />
-          <Text style={styles.actionLabel}>Withdraw</Text>
+          <Text style={styles.actionLabel} numberOfLines={1}>
+            Withdraw
+          </Text>
         </Pressable>
       </View>
     </View>
@@ -86,7 +114,7 @@ export function WalletCard({
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: colors.green[800],
+    backgroundColor: colors.gold[800],
     borderRadius: radius.lg,
     padding: cardPadding,
     alignSelf: 'stretch',
@@ -150,21 +178,21 @@ const styles = StyleSheet.create({
   },
   actions: {
     flexDirection: 'row',
-    gap: spacing[3],
+    gap: spacing[2],
   },
   actionButton: {
     flex: 1,
-    height: 48,
+    height: 56,
     borderRadius: radius.md,
     backgroundColor: colors.overlay.onDark,
-    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: spacing[2],
+    gap: spacing[1],
   },
   actionLabel: {
-    ...typography.button,
+    ...typography.label,
     color: colors.text.inverse,
+    flexShrink: 1,
   },
   pressed: {
     opacity: 0.85,

@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   },
   eyebrow: {
     ...typography.eyebrow,
-    color: colors.green[700],
+    color: colors.gold[700],
   },
   title: {
     ...typography.h2,
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
   link: {
     ...typography.label,
-    color: colors.green[700],
+    color: colors.gold[700],
   },
   pressed: {
     opacity: 0.85,

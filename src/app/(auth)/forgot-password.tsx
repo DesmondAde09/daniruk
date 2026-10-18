@@ -31,11 +31,11 @@ export default function ForgotPasswordScreen() {
       subtitle="Enter the email linked to your account and we'll send you a link to reset your password."
     >
       <View style={styles.iconWrap}>
-        <Icon name="lock" size={28} color={colors.green[700]} />
+        <Icon name="lock" size={28} color={colors.gold[700]} />
       </View>
       {sent ? (
         <View style={styles.successNote}>
-          <Icon name="check" size={18} color={colors.green[700]} />
+          <Icon name="check" size={18} color={colors.gold[700]} />
           <Text style={styles.successText}>
             If an account exists for {email.trim()}, a reset link is on its way.
           </Text>
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     width: 64,
     height: 64,
     borderRadius: radius.pill,
-    backgroundColor: colors.green[50],
+    backgroundColor: colors.gold[50],
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center',

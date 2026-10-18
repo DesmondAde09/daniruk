@@ -88,14 +88,14 @@ const styles = StyleSheet.create({
     gap: spacing[2],
   },
   inputRowFocused: {
-    borderColor: colors.green[700],
+    borderColor: colors.gold[700],
   },
   inputRowError: {
     borderColor: colors.status.error,
   },
   prefix: {
     ...typography.h1,
-    color: colors.green[700],
+    color: colors.gold[700],
   },
   input: {
     flex: 1,

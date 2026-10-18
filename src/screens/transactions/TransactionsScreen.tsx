@@ -45,7 +45,7 @@ const SKELETON_COUNT = 5;
  * Transactions tab (ticket 06): full ledger with a themed filter chip row.
  * SegmentedToggle is built for 2–3 full-width options, so five filters use a
  * horizontal chip row that extends the theme (questionnaire resolution 9):
- * active chip = green.700 fill + inverse text; inactive = white card.
+ * active chip = gold.700 fill + inverse text; inactive = white card.
  * Routed via the thin wrapper at `src/app/(tabs)/transactions.tsx`.
  */
 export function TransactionsScreen() {
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing[4],
   },
   chipActive: {
-    backgroundColor: colors.green[700],
+    backgroundColor: colors.gold[700],
   },
   chipInactive: {
     backgroundColor: colors.surface.card,

@@ -16,6 +16,8 @@ async function renderCard(overrides?: Partial<Parameters<typeof WalletCard>[0]>)
     balanceHidden: false,
     onToggleBalance: jest.fn(),
     onReceive: jest.fn(),
+    onAddMoney: jest.fn(),
+    onTransfer: jest.fn(),
     onWithdraw: jest.fn(),
     ...overrides,
   };
@@ -42,11 +44,15 @@ describe('WalletCard', () => {
     expect(props.onToggleBalance).toHaveBeenCalledTimes(1);
   });
 
-  it('Receive and Withdraw buttons call their handlers', async () => {
+  it('Receive, Add money, Transfer and Withdraw buttons call their handlers', async () => {
     const props = await renderCard();
     await fireEvent.press(screen.getByText('Receive'));
+    await fireEvent.press(screen.getByText('Add money'));
+    await fireEvent.press(screen.getByText('Transfer'));
     await fireEvent.press(screen.getByText('Withdraw'));
     expect(props.onReceive).toHaveBeenCalledTimes(1);
+    expect(props.onAddMoney).toHaveBeenCalledTimes(1);
+    expect(props.onTransfer).toHaveBeenCalledTimes(1);
     expect(props.onWithdraw).toHaveBeenCalledTimes(1);
   });
 });

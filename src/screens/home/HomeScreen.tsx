@@ -93,6 +93,8 @@ export function HomeScreen() {
             balanceHidden={balanceHidden}
             onToggleBalance={() => setBalanceHidden((hidden) => !hidden)}
             onReceive={() => router.push('/wallet/receive')}
+            onAddMoney={() => router.push('/wallet/add-money')}
+            onTransfer={() => router.push('/wallet/transfer')}
             onWithdraw={() => router.push('/wallet/withdraw')}
           />
         ) : null}
@@ -168,7 +170,7 @@ export function HomeScreen() {
 
         <View style={styles.secureNote}>
           <View style={styles.secureIconTile}>
-            <Icon name="shield-check" size={22} color={colors.green[700]} />
+            <Icon name="shield-check" size={22} color={colors.gold[700]} />
           </View>
           <View style={styles.secureText}>
             <Text style={styles.secureTitle}>Protected by Daniruk Secure</Text>
@@ -233,7 +235,7 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: radius.md,
-    backgroundColor: colors.green[50],
+    backgroundColor: colors.gold[50],
     alignItems: 'center',
     justifyContent: 'center',
   },

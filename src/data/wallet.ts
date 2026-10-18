@@ -1,10 +1,19 @@
 import { formatCrypto, formatNaira } from '@/lib/currency';
 import { cryptoUnitsToString, parseCryptoUnits } from '@/lib/crypto';
+import { validateAccountNumber } from '@/lib/validators';
 
 import { mockUser } from './auth';
 import { withLatency } from './latency';
-import { addTransaction } from './transactions';
-import type { BankAccount, CryptoHolding, ID, Transaction, Wallet } from './types';
+import { addTransaction, getTransactions } from './transactions';
+import type {
+  BankAccount,
+  CryptoHolding,
+  DepositAccount,
+  ID,
+  Transaction,
+  TransferRecipient,
+  Wallet,
+} from './types';
 
 /** Minimum NGN withdrawal (₦1,000) — a mock product rule, enforced in the data layer. */
 export const MIN_NGN_WITHDRAWAL_KOBO = 100_000;
@@ -229,4 +238,163 @@ export async function withdrawCrypto(input: WithdrawCryptoInput): Promise<Transa
     },
   });
   return withLatency({ ...transaction });
+}
+
+/** Minimum bank-transfer top-up: ₦100. */
+export const MIN_NGN_DEPOSIT_KOBO = 10_000;
+
+/** The persona's personalized deposit account (design: add-money bank transfer). */
+const depositAccount: DepositAccount = {
+  bankName: 'Wema Bank',
+  accountNumber: '8129460173',
+  accountName: `DANIRUK / ${mockUser.fullName.toUpperCase()}`,
+};
+
+export function getDepositAccount(): Promise<DepositAccount> {
+  return withLatency({ ...depositAccount });
+}
+
+/**
+ * NGN deposit via bank transfer: credits the wallet, then records a successful
+ * 'receive' transaction — the mirror of `withdrawNgnToBank`.
+ */
+export async function confirmNgnDeposit(amountKobo: number): Promise<Transaction> {
+  if (!Number.isInteger(amountKobo) || amountKobo < MIN_NGN_DEPOSIT_KOBO) {
+    throw new Error(
+      `Minimum deposit is ${formatNaira(MIN_NGN_DEPOSIT_KOBO, { decimals: false })}`,
+    );
+  }
+  creditNgnKobo(amountKobo);
+  const transaction = addTransaction({
+    type: 'receive',
+    title: 'Bank transfer top-up',
+    amountKobo,
+    currency: 'NGN',
+    status: 'successful',
+    meta: {
+      method: 'Bank transfer',
+      bank: depositAccount.bankName,
+      accountNumber: depositAccount.accountNumber,
+    },
+  });
+  return withLatency({ ...transaction });
+}
+
+/** Minimum NGN transfer to another person's bank account (₦100). */
+export const MIN_NGN_TRANSFER_KOBO = 10_000;
+
+/**
+ * Mock recipient directory for the transfer name enquiry. Ordered so the
+ * seeded transfer ledger entries resolve back to their recorded names
+ * (digitSum('2034567891') % 8 = 5, digitSum('8123456780') % 8 = 4).
+ */
+const recipientNames = [
+  'Fatima Abubakar',
+  'Emeka Obi',
+  'Yetunde Alabi',
+  'Ibrahim Musa',
+  'Tunde Balogun',
+  'Chiamaka Nwosu',
+  'Ngozi Eze',
+  'Olumide Ajayi',
+];
+
+/**
+ * Shared destination check for the transfer name enquiry and the transfer
+ * itself: valid NUBAN (shared validator) at a known bank.
+ */
+function transferDestinationError(bankName: string, accountNumber: string): string | null {
+  const accountError = validateAccountNumber(accountNumber);
+  if (accountError) {
+    return accountError;
+  }
+  if (!nigerianBanks.includes(bankName)) {
+    return `Unknown bank: ${bankName}`;
+  }
+  return null;
+}
+
+/**
+ * Mock NUBAN name enquiry for a transfer recipient (someone other than the
+ * signed-in user): deterministic per account number, so the same destination
+ * always resolves to the same name. (A real NIBSS lookup keys on bank too;
+ * this mock ignores it.)
+ */
+export function resolveRecipientAccount(bankName: string, accountNumber: string): Promise<string> {
+  const destinationError = transferDestinationError(bankName, accountNumber);
+  if (destinationError) {
+    return Promise.reject(new Error(destinationError));
+  }
+  const digitSum = accountNumber.split('').reduce((sum, digit) => sum + Number(digit), 0);
+  return withLatency(recipientNames[digitSum % recipientNames.length]);
+}
+
+export interface TransferNgnInput extends TransferRecipient {
+  amountKobo: number;
+  remark?: string;
+}
+
+/**
+ * NGN transfer to another person's bank account: validates the recipient,
+ * debits the wallet first (throwing on insufficient funds so no doomed ledger
+ * entry is recorded), then records a successful 'transfer' transaction —
+ * mirroring `withdrawNgnToBank`.
+ */
+export async function transferNgn(input: TransferNgnInput): Promise<Transaction> {
+  const destinationError = transferDestinationError(input.bankName, input.accountNumber);
+  if (destinationError) {
+    throw new Error(destinationError);
+  }
+  if (input.accountName.trim().length === 0) {
+    throw new Error('Recipient name is required');
+  }
+  if (input.amountKobo < MIN_NGN_TRANSFER_KOBO) {
+    throw new Error(
+      `Minimum transfer is ${formatNaira(MIN_NGN_TRANSFER_KOBO, { decimals: false })}`,
+    );
+  }
+  debitNgnKobo(input.amountKobo);
+  const transaction = addTransaction({
+    type: 'transfer',
+    title: `Transfer to ${input.accountName}`,
+    amountKobo: -input.amountKobo,
+    currency: 'NGN',
+    status: 'successful',
+    meta: {
+      bank: input.bankName,
+      accountNumber: input.accountNumber,
+      accountName: input.accountName,
+      ...(input.remark?.trim() ? { remark: input.remark.trim() } : {}),
+    },
+  });
+  return withLatency({ ...transaction });
+}
+
+/**
+ * Recent transfer recipients, newest first and deduped by bank + account
+ * number, derived from the ledger — the recipient shortcuts Nigerian apps
+ * (Opay/Kuda) show on their transfer screens.
+ */
+export async function getRecentRecipients(): Promise<TransferRecipient[]> {
+  const transfers = await getTransactions({ type: 'transfer' });
+  const seen = new Set<string>();
+  const recipients: TransferRecipient[] = [];
+  for (const tx of transfers) {
+    const bankName = tx.meta?.bank;
+    const accountNumber = tx.meta?.accountNumber;
+    const accountName = tx.meta?.accountName;
+    if (!bankName || !accountNumber || !accountName) {
+      continue;
+    }
+    const key = `${bankName}|${accountNumber}`;
+    if (seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    recipients.push({ bankName, accountNumber, accountName });
+    if (recipients.length >= 5) {
+      break;
+    }
+  }
+  return recipients;
 }

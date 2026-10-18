@@ -1,13 +1,20 @@
-import { getTransactions } from '@/data/transactions';
+import { getTransaction, getTransactions } from '@/data/transactions';
 import {
   addBankAccount,
+  confirmNgnDeposit,
   debitCrypto,
   debitNgnKobo,
   getBankAccounts,
   getBanks,
+  getDepositAccount,
+  getRecentRecipients,
   getWallet,
+  MIN_NGN_DEPOSIT_KOBO,
+  MIN_NGN_TRANSFER_KOBO,
   MIN_NGN_WITHDRAWAL_KOBO,
   resolveBankAccountName,
+  resolveRecipientAccount,
+  transferNgn,
   withdrawCrypto,
   withdrawNgnToBank,
 } from '@/data/wallet';
@@ -152,6 +159,154 @@ describe('wallet data layer — withdrawals', () => {
       expect(account.accountName).toBe('Adebayo Okafor');
       const accounts = await getBankAccounts();
       expect(accounts.some((entry) => entry.id === account.id)).toBe(true);
+    });
+  });
+});
+
+describe('wallet data layer — deposits', () => {
+  describe('getDepositAccount', () => {
+    it("returns the persona's personalized Wema Bank account", async () => {
+      const account = await getDepositAccount();
+
+      expect(account.bankName).toBe('Wema Bank');
+      expect(account.accountNumber).toMatch(/^\d{10}$/);
+      expect(account.accountName).toBe('DANIRUK / ADEBAYO OKAFOR');
+    });
+  });
+
+  describe('confirmNgnDeposit', () => {
+    it('credits the wallet and records a receive transaction', async () => {
+      const before = await getWallet();
+
+      const transaction = await confirmNgnDeposit(5_000_000);
+
+      expect(transaction.type).toBe('receive');
+      expect(transaction.title).toBe('Bank transfer top-up');
+      expect(transaction.status).toBe('successful');
+      expect(transaction.amountKobo).toBe(5_000_000);
+      expect(transaction.meta?.method).toBe('Bank transfer');
+
+      const after = await getWallet();
+      expect(after.ngn.balanceKobo).toBe(before.ngn.balanceKobo + 5_000_000);
+
+      const ledger = await getTransactions();
+      expect(ledger.some((entry) => entry.id === transaction.id)).toBe(true);
+    });
+
+    it('rejects amounts below the minimum without crediting', async () => {
+      const before = await getWallet();
+
+      await expect(confirmNgnDeposit(MIN_NGN_DEPOSIT_KOBO - 100)).rejects.toThrow(
+        'Minimum deposit',
+      );
+
+      const after = await getWallet();
+      expect(after.ngn.balanceKobo).toBe(before.ngn.balanceKobo);
+    });
+  });
+});
+
+describe('wallet data layer — transfers', () => {
+  describe('resolveRecipientAccount', () => {
+    it('rejects invalid account numbers and unknown banks', async () => {
+      await expect(resolveRecipientAccount('Kuda', '203456789')).rejects.toThrow('10 digits');
+      await expect(resolveRecipientAccount('NoSuch Bank', '2034567891')).rejects.toThrow(
+        'Unknown bank',
+      );
+    });
+
+    it('resolves deterministically per account number', async () => {
+      const first = await resolveRecipientAccount('Kuda', '2034567891');
+      const second = await resolveRecipientAccount('Kuda', '2034567891');
+
+      expect(first.length).toBeGreaterThan(0);
+      expect(first).toBe(second);
+    });
+  });
+
+  describe('getRecentRecipients', () => {
+    it('returns the seeded recipients, unique and newest first', async () => {
+      const recipients = await getRecentRecipients();
+
+      expect(recipients).toEqual([
+        { bankName: 'Kuda', accountNumber: '2034567891', accountName: 'Chiamaka Nwosu' },
+        { bankName: 'Opay', accountNumber: '8123456780', accountName: 'Tunde Balogun' },
+      ]);
+    });
+  });
+
+  describe('transferNgn', () => {
+    it('rejects amounts below the minimum and above the balance', async () => {
+      await expect(
+        transferNgn({
+          bankName: 'Kuda',
+          accountNumber: '2034567891',
+          accountName: 'Chiamaka Nwosu',
+          amountKobo: MIN_NGN_TRANSFER_KOBO - 100,
+        }),
+      ).rejects.toThrow('Minimum transfer is ₦100');
+
+      const wallet = await getWallet();
+      await expect(
+        transferNgn({
+          bankName: 'Kuda',
+          accountNumber: '2034567891',
+          accountName: 'Chiamaka Nwosu',
+          amountKobo: wallet.ngn.balanceKobo + 100,
+        }),
+      ).rejects.toThrow('Insufficient NGN balance');
+    });
+
+    it('debits the wallet and records a transfer transaction with meta', async () => {
+      const before = await getWallet();
+
+      const transaction = await transferNgn({
+        bankName: 'Kuda',
+        accountNumber: '2034567891',
+        accountName: 'Chiamaka Nwosu',
+        amountKobo: 250_000,
+        remark: ' Lunch money ',
+      });
+
+      expect(transaction.type).toBe('transfer');
+      expect(transaction.title).toBe('Transfer to Chiamaka Nwosu');
+      expect(transaction.amountKobo).toBe(-250_000);
+      expect(transaction.currency).toBe('NGN');
+      expect(transaction.status).toBe('successful');
+      expect(transaction.meta).toMatchObject({
+        bank: 'Kuda',
+        accountNumber: '2034567891',
+        accountName: 'Chiamaka Nwosu',
+        remark: 'Lunch money',
+      });
+
+      const after = await getWallet();
+      expect(after.ngn.balanceKobo).toBe(before.ngn.balanceKobo - 250_000);
+
+      const stored = await getTransaction(transaction.id);
+      expect(stored.reference).toBe(transaction.reference);
+      expect(stored.type).toBe('transfer');
+    });
+
+    it('puts a new recipient first in getRecentRecipients', async () => {
+      await transferNgn({
+        bankName: 'GTBank',
+        accountNumber: '1112223334',
+        accountName: 'Fatima Abubakar',
+        amountKobo: 100_000,
+      });
+
+      const recipients = await getRecentRecipients();
+      expect(recipients[0]).toEqual({
+        bankName: 'GTBank',
+        accountNumber: '1112223334',
+        accountName: 'Fatima Abubakar',
+      });
+      expect(
+        recipients.some(
+          (entry) => entry.bankName === 'Kuda' && entry.accountNumber === '2034567891',
+        ),
+      ).toBe(true);
     });
   });
 });

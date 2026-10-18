@@ -19,6 +19,7 @@ const VALID_TYPES: readonly TransactionType[] = [
   'electricity',
   'flight',
   'receive',
+  'transfer',
   'withdraw',
 ];
 const VALID_STATUSES: readonly TransactionStatus[] = ['successful', 'pending', 'failed'];

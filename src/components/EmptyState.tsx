@@ -19,7 +19,7 @@ export function EmptyState({ icon, title, caption, actionLabel, onAction }: Empt
   return (
     <View style={styles.container}>
       <View style={styles.iconCircle}>
-        <Icon name={icon} size={32} color={colors.green[700]} />
+        <Icon name={icon} size={32} color={colors.gold[700]} />
       </View>
       <Text style={styles.title}>{title}</Text>
       {caption ? <Text style={styles.caption}>{caption}</Text> : null}
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     width: ICON_CIRCLE,
     height: ICON_CIRCLE,
     borderRadius: ICON_CIRCLE / 2,
-    backgroundColor: colors.green[50],
+    backgroundColor: colors.gold[50],
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: spacing[1],

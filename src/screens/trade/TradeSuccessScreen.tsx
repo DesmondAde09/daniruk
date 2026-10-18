@@ -27,7 +27,7 @@ export function TradeSuccessScreen() {
     <SafeAreaView style={styles.screen} edges={['top', 'bottom']}>
       <View style={styles.content}>
         <View style={styles.checkCircle}>
-          <Icon name="check" size={40} color={colors.green[700]} />
+          <Icon name="check" size={40} color={colors.gold[700]} />
         </View>
         <Text style={styles.title}>Trade successful</Text>
         {hasAmount ? <Text style={styles.amount}>{formatSignedKobo(amountKobo)}</Text> : null}
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     width: CHECK_CIRCLE,
     height: CHECK_CIRCLE,
     borderRadius: CHECK_CIRCLE / 2,
-    backgroundColor: colors.green[50],
+    backgroundColor: colors.gold[50],
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: spacing[2],
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   },
   amount: {
     ...typography.balance,
-    color: colors.green[700],
+    color: colors.gold[700],
   },
   caption: {
     ...typography.body,

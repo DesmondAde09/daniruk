@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   cellActive: {
-    borderColor: colors.green[700],
+    borderColor: colors.gold[700],
   },
   cellText: {
     ...typography.h2,

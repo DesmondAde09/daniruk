@@ -11,7 +11,7 @@ export interface StatusBadgeProps {
 }
 
 const statusConfig: Record<TransactionStatus, { label: string; backgroundColor: string; color: string }> = {
-  successful: { label: 'Successful', backgroundColor: colors.green[100], color: colors.green[700] },
+  successful: { label: 'Successful', backgroundColor: colors.gold[100], color: colors.gold[700] },
   pending: { label: 'Pending', backgroundColor: colors.yellow[100], color: colors.status.pending },
   failed: { label: 'Failed', backgroundColor: componentColors.errorTint, color: colors.status.error },
 };

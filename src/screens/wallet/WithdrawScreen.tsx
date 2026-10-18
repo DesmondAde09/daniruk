@@ -150,7 +150,7 @@ function WithdrawSuccess({ transaction }: { transaction: Transaction }) {
     <View style={styles.successScreen}>
       <View style={styles.successContent}>
         <View style={styles.checkCircle}>
-          <Icon name="check" size={40} color={colors.green[700]} />
+          <Icon name="check" size={40} color={colors.gold[700]} />
         </View>
         <Text style={styles.successTitle}>Withdrawal successful</Text>
         {amount ? <Text style={styles.successAmount}>{amount}</Text> : null}
@@ -248,7 +248,7 @@ function BankForm({
             accessibilityRole="button"
             style={({ pressed }) => [styles.addAccountRow, pressed && styles.pressed]}
           >
-            <Icon name="plus" size={20} color={colors.green[700]} />
+            <Icon name="plus" size={20} color={colors.gold[700]} />
             <Text style={styles.addAccountLabel}>Add a new bank account</Text>
           </Pressable>
         </View>
@@ -479,7 +479,7 @@ const styles = StyleSheet.create({
     paddingVertical: spacing[3],
   },
   accountRowSelected: {
-    borderColor: colors.green[700],
+    borderColor: colors.gold[700],
   },
   radio: {
     width: 20,
@@ -491,13 +491,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   radioSelected: {
-    borderColor: colors.green[700],
+    borderColor: colors.gold[700],
   },
   radioDot: {
     width: 10,
     height: 10,
     borderRadius: radius.pill,
-    backgroundColor: colors.green[700],
+    backgroundColor: colors.gold[700],
   },
   accountText: {
     flex: 1,
@@ -520,7 +520,7 @@ const styles = StyleSheet.create({
   },
   addAccountLabel: {
     ...typography.bodyMedium,
-    color: colors.green[700],
+    color: colors.gold[700],
   },
   balanceHint: {
     ...typography.caption,
@@ -572,7 +572,7 @@ const styles = StyleSheet.create({
     width: 96,
     height: 96,
     borderRadius: 48,
-    backgroundColor: colors.green[50],
+    backgroundColor: colors.gold[50],
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: spacing[2],
@@ -584,7 +584,7 @@ const styles = StyleSheet.create({
   },
   successAmount: {
     ...typography.balance,
-    color: colors.green[700],
+    color: colors.gold[700],
   },
   successCaption: {
     ...typography.body,

@@ -215,14 +215,14 @@ const styles = StyleSheet.create({
   payoutCard: {
     alignItems: 'center',
     gap: spacing[2],
-    backgroundColor: colors.green[800],
+    backgroundColor: colors.gold[800],
     borderRadius: radius.lg,
     padding: cardPadding,
     ...cardShadow(),
   },
   payoutEyebrow: {
     ...typography.eyebrow,
-    color: colors.lime[400],
+    color: colors.accent[400],
   },
   payoutAmount: {
     ...typography.balance,
